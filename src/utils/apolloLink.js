@@ -5,7 +5,10 @@ import { createUploadLink } from 'apollo-upload-client';
 const REACT_APP_API_URL = 'https://odk-testing.herokuapp.com/graphql'
 
 
-export const uploadLink = createUploadLink({ uri: REACT_APP_API_URL, credentials: 'include' });
+export const uploadLink = createUploadLink({
+  uri: REACT_APP_API_URL,
+  credentials: 'include'
+});
 
 
 export const authLink = setContext((_, { headers }) => {
