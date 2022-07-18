@@ -16,7 +16,7 @@ const CoverSwiper = () => {
   const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <Box sx={{ width, height: height / 4 }}>
+    <Box sx={{ width, height: height / 3 }}>
       <Swiper
         slidesPerView={matchDownMd ? 1 : 4}
         spaceBetween={3}

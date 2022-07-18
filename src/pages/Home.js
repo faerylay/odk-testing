@@ -12,7 +12,7 @@ const Home = () => {
   const { width, height } = useWindowDimensions()
   return (
     <Box>
-      <Box sx={{ width, height: { md: height / 1.4, xs: height / 2 } }}>
+      <Box sx={{ width, height: { md: height / 1.4, xs: height / 3 } }}>
         <img src={CoverImage} alt="..." width="100%" height="100%" />
       </Box>
       <CoverSwiper />
