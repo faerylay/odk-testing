@@ -11,7 +11,7 @@ const Admin = () => {
     navigate('/login')
   }
   return (
-    <Paper elevation={5} sx={{ background: "#fff", display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingBlock: 2, margin: { lg: 2, xs: 1 } }}>
+    <Paper elevation={5} sx={{ background: "red", display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingBlock: 2, margin: { lg: 2, xs: 1 } }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', paddingInline: 3, paddingBlock: 1 }}>
         <Typography variant='h3'>Admin Dashboard</Typography>
         <Button variant="outlined" sx={{ border: 2, borderColor: '#fff' }} onClick={logout} >
