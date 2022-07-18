@@ -15,7 +15,7 @@ const Certificate = ({ title, image }) => {
           <Button variant="outlined" color="primary" sx={{ marginBlock: 3 }} onClick={() => navigate('/request_form')}>
             REQUEST FORM
           </Button>
-          <Typography color="black" variant='p' component="div" sx={{ fontSize: 25, paddingBlock: 3 }}>{title}</Typography>
+          <Typography color="black" variant='p' component="div" sx={{ fontSize: { xs: 18, md: 25 }, paddingBlock: 3 }}>{title}</Typography>
           <img src={image} alt="..." width="100%" height="100%" />
         </Paper>
       </Box>

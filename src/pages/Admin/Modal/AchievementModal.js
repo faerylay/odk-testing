@@ -39,7 +39,7 @@ const AchievementModal = ({ data }) => {
                 <IconX />
               </IconButton>
             </Box>
-            <AchievementCreate userId={data.id} handleClose={handleClose} />
+            <AchievementCreate data={data} handleClose={handleClose} />
           </Paper>
         </Box>
       </Dialog>

@@ -8,7 +8,7 @@ import { CREATE_ACHIEVEMENT, FETCH_ALL_ACHIEVEMENTS } from '../../../graphql'
 
 const MAX_POST_IMAGE_SIZE = 5000000;
 
-const AchievementCreate = ({ userId, handleClose }) => {
+const AchievementCreate = ({ data, handleClose }) => {
   const theme = useTheme()
 
   let months = useInput()
@@ -29,8 +29,8 @@ const AchievementCreate = ({ userId, handleClose }) => {
   const [createAchievement, { loading }] = useMutation(CREATE_ACHIEVEMENT, {
     variables: {
       input: {
-        author: userId,
-        months: months.value,
+        author: data?.id,
+        months: months?.value,
         image: image ? image : null,
       }
     },
@@ -46,6 +46,7 @@ const AchievementCreate = ({ userId, handleClose }) => {
     e.preventDefault()
     setErrors('');
     const { data } = await createAchievement();
+    console.log(data)
     if (data) {
       handleClose()
     }

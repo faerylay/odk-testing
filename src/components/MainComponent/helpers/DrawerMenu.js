@@ -17,7 +17,7 @@ const DrawerMenu = ({ mobileOpen, handleDrawerToggle }) => {
   const drawer = (
     <Box sx={{ textAlign: 'center' }}>
       <Typography variant="h3" sx={{ my: 2 }}>
-        MUI
+        One Day Korea
       </Typography>
       <IconButton onClick={handleDrawerToggle} sx={{ position: 'absolute', top: 0, right: 0 }}>
         <IconX />
