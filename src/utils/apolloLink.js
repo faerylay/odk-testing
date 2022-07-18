@@ -1,7 +1,7 @@
 import { onError } from "@apollo/client/link/error";
 import { setContext } from '@apollo/client/link/context';
 import { createUploadLink } from 'apollo-upload-client';
-const REACT_APP_API_URL = 'https://odk-testing.herokuapp.com/graphql'
+const REACT_APP_API_URL = 'https://odk-testing.herokuapp.com'
 
 // const REACT_APP_API_URL = 'http://localhost:4000/graphql'
 
