@@ -59,5 +59,6 @@
   },
   "devDependencies": {
     "sass": "^1.53.0"
-  }
+  },
+  "proxy": "https://odk-testing.herokuapp.com"
 }

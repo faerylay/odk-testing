@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 import CoverImage from '../assets/images/CoverImage_1.png';
 
@@ -9,6 +10,7 @@ import { Footer, CoverSwiper } from '../components/MainComponent';
 import MotificationImage from '../components/MainComponent/helpers/MotificationImage';
 
 const Home = () => {
+  const navigate = useNavigate()
   const { width, height } = useWindowDimensions()
   return (
     <Box>
@@ -17,7 +19,7 @@ const Home = () => {
       </Box>
       <CoverSwiper />
       <Box sx={{ marginBlock: 5, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <Button variant="outlined" color="primary" sx={{ marginBlock: { md: 3, xs: 0 } }}>
+        <Button onClick={() => navigate('/request_form')} variant="outlined" color="primary" sx={{ marginBlock: { md: 3, xs: 0 } }}>
           REQUEST FORM
         </Button>
       </Box>

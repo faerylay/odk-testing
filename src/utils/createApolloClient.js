@@ -8,18 +8,6 @@ const createApolloClient = () => {
       typePolicies: {
         Query: {
           fields: {
-            // achievements: {
-            //   ...offsetLimitPagination(),
-            //   read(existing, { args }) {
-            //     // Implement here
-            //   }
-            // },
-            // certificates: {
-            //   ...offsetLimitPagination(),
-            //   read(existing, { args }) {
-            //     // Implement here
-            //   }
-            // },
             users: {
               read(existing, { args: { offset, limit } }) {
                 return existing && existing.slice(offset, offset + limit);
