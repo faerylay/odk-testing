@@ -13,19 +13,20 @@ const AchievementCreate = ({ data, handleClose }) => {
 
   let months = useInput()
   const [image, setImage] = useState('')
-
+  const [errors, setErrors] = useState('')
+  const [fileSize, setFileSize] = useState('')
   const handlePostImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
     if (file.size >= MAX_POST_IMAGE_SIZE) {
-      console.log(`File size should be less then ${MAX_POST_IMAGE_SIZE / 1000000}MB`);
+      setFileSize(`File size should be less then ${MAX_POST_IMAGE_SIZE / 1000000}MB`);
       return;  // 5 MB
     }
     setImage(file);
     e.target.value = null;
   }
 
-  const [errors, setErrors] = useState('')
+
   const [createAchievement, { loading }] = useMutation(CREATE_ACHIEVEMENT, {
     variables: {
       input: {
@@ -54,11 +55,11 @@ const AchievementCreate = ({ data, handleClose }) => {
   }
 
   return (
-    <Box sx={{ paddingInline: { xs: 2, md: 3 }, background: 'red' }}>
+    <Box sx={{ paddingInline: { xs: 2, md: 3 } }}>
       <form noValidate onSubmit={handleSubmit} >
-        {errors && (
+        {errors || fileSize && (
           <FormHelperText error sx={{ mb: 2 }}>
-            {errors}
+            {errors || fileSize}
           </FormHelperText>
         )}
         <FormControl fullWidth error={Boolean(false)} sx={{ ...theme.typography.customInput }}>
@@ -78,7 +79,7 @@ const AchievementCreate = ({ data, handleClose }) => {
             id="achievementImage"
             name="achievementImage"
             type="file"
-            accept="*"
+            accept="application/pdf"
             onChange={handlePostImageUpload}
           />
           <Fab
