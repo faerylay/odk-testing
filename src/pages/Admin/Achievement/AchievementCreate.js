@@ -46,7 +46,6 @@ const AchievementCreate = ({ data, handleClose }) => {
     e.preventDefault()
     setErrors('');
     const { data } = await createAchievement();
-    console.log(data)
     if (data) {
       handleClose()
     }
@@ -55,7 +54,7 @@ const AchievementCreate = ({ data, handleClose }) => {
   }
 
   return (
-    <Box sx={{ paddingInline: { xs: 2, md: 3 }, background: 'red' }}>
+    <Box sx={{ paddingInline: { xs: 2, md: 3 } }}>
       <form noValidate onSubmit={handleSubmit} >
         {errors && (
           <FormHelperText error sx={{ mb: 2 }}>
