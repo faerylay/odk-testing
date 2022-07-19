@@ -24,6 +24,7 @@ const AchievementCreate = ({ data, handleClose }) => {
     setImage(file);
     e.target.value = null;
   }
+  console.log(image)
 
   const [errors, setErrors] = useState('')
   const [createAchievement, { loading }] = useMutation(CREATE_ACHIEVEMENT, {
