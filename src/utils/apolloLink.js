@@ -7,7 +7,8 @@ const REACT_APP_API_URL = 'https://odk-testing.herokuapp.com/graphql'
 
 export const uploadLink = createUploadLink({
   uri: REACT_APP_API_URL,
-  credentials: 'include'
+  credentials: 'include',
+  headers: { 'Apollo-Require-Preflight': 'true' }
 });
 
 

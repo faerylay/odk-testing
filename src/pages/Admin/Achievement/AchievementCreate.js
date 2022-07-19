@@ -24,7 +24,6 @@ const AchievementCreate = ({ data, handleClose }) => {
     setImage(file);
     e.target.value = null;
   }
-  console.log(image)
 
   const [errors, setErrors] = useState('')
   const [createAchievement, { loading }] = useMutation(CREATE_ACHIEVEMENT, {
@@ -55,7 +54,7 @@ const AchievementCreate = ({ data, handleClose }) => {
   }
 
   return (
-    <Box sx={{ paddingInline: { xs: 2, md: 3 } }}>
+    <Box sx={{ paddingInline: { xs: 2, md: 3 }, background: 'red' }}>
       <form noValidate onSubmit={handleSubmit} >
         {errors && (
           <FormHelperText error sx={{ mb: 2 }}>
