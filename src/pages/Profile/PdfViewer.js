@@ -20,19 +20,22 @@ const PdfViewer = ({ data }) => {
       <Box
         className="rpv-core__viewer"
         sx={{
-          border: 1,
-          borderColor: '#ddd',
+          border: 2,
+          borderTopLeftRadius: 10,
+          borderTopRightRadius: 10,
+          borderColor: 'gold',
           display: 'flex',
           flexDirection: 'column',
-          height: 700,
+          height: { xs: 400, sm: 600, md: 700 },
+          width: '100%',
         }}
       >
         <Box
           sx={{
             alignItems: 'center',
             backgroundColor: '#eeeeee',
-            borderBottom: 1,
-            borderBottomColor: '#ddd',
+            borderTopLeftRadius: 11,
+            borderTopRightRadius: 11,
             display: 'flex',
             justifyContent: 'space-between',
             padding: '4px',

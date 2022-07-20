@@ -35,9 +35,6 @@ const Profile = () => {
     }
   }, [token, navigate]);
 
-  // const { height } = useWindowDimensions()
-  // const theme = useTheme()
-  // const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
   const logout = () => {
     localStorage.removeItem('profile')
     navigate('/login')
@@ -50,11 +47,10 @@ const Profile = () => {
           <Paper elevation={3} sx={{ border: 2, borderColor: "#FFD700" }}>
             <Box sx={{ width: '100%', alignSelf: 'center' }}>
               <Box sx={{ p: 2, overflow: 'auto' }}>
-
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', paddingInline: 3, paddingBlock: 1 }}>
-                  <Typography variant="h3">Name - {getUser?.user?.fullName}</Typography>
-                  <Button variant="outlined" sx={{ border: 2, borderColor: '#fff' }} onClick={logout} >
-                    <Typography variant='h3'>Logout</Typography>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', paddingInline: 3, paddingBlock: 1, alignItems: 'center' }}>
+                  <Typography variant="h3" sx={{ fontSize: { xs: 13, md: 17 } }}>Name - {getUser?.user?.fullName}</Typography>
+                  <Button variant="contained" onClick={logout} >
+                    <Typography>Logout</Typography>
                   </Button>
                 </Box>
                 {!loading && <Achievements achievements={getUser?.user?.achievements} />}

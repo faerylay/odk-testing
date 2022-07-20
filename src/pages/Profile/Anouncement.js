@@ -1,29 +1,31 @@
 import React, { useState } from 'react'
-import { Paper, Box, Divider, Typography, IconButton } from '@mui/material'
-import { IconArrowLeft, IconArrowUp } from '@tabler/icons'
+import { Paper, Box, Divider, Typography, FormControlLabel, Switch } from '@mui/material'
 
 const Anouncement = () => {
-  const [open, setOpen] = useState(true)
+  const [checked, setChecked] = useState(true);
+
+
   return (
-    <Paper elevation={open && 3} sx={{ my: 2, display: 'flex', flexDirection: 'column' }}>
-      <Box sx={{ mt: !open && -2, position: 'absolute', alignSelf: 'flex-end' }}>
-        <IconButton color="primary" onClick={() => setOpen(!open)}>
-          {open ? <IconArrowUp /> : <IconArrowLeft />}
-        </IconButton>
+    <Paper elevation={checked ? 3 : 1} sx={{ my: 2, display: 'flex', flexDirection: 'column' }}>
+
+      <Box sx={{ mt: !checked && -2, position: 'absolute', alignSelf: 'flex-end' }}>
+        <FormControlLabel control={
+          <Switch checked={checked} onChange={() => setChecked((prev) => !prev)} />
+        } />
       </Box>
       {
-        open && (
+        checked && (
           <Box sx={{ p: 2 }}>
             <Box sx={{ px: 1 }}>
               <Typography variant="h3" sx={{ pb: 1 }} >Anouncement</Typography>
-              <Typography variant="h5" color="black">
+              <Typography variant="span" color="black">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi cum eligendi porro laboriosam a, animi accusantium, amet vel praesentium blanditiis alias rerum culpa debitis dolor. Quas magni reprehenderit molestias quo?
               </Typography>
             </Box>
             <Divider sx={{ my: 2 }} />
             <Box sx={{ px: 1 }}>
-              <Typography variant="h3" sx={{ pb: 1 }} >Information</Typography>
-              <Typography variant="h5" color="grey">
+              <Typography variant="h4" sx={{ pb: 1 }} >Information</Typography>
+              <Typography variant="h5" color="GrayText">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi cum eligendi porro laboriosam a, animi accusantium, amet vel praesentium blanditiis alias rerum culpa debitis dolor. Quas magni reprehenderit molestias quo?
               </Typography>
             </Box>
