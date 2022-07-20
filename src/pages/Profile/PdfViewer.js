@@ -14,15 +14,15 @@ const PdfViewer = ({ data }) => {
       return `${fileName}`;
     },
   });
-  console.log(data.months)
+
   const { DownloadButton } = getFilePluginInstance;
   return (
     <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.14.305/build/pdf.worker.min.js">
-      <div className={data.months === '12' ? 'box' : 'empty'}>
+      <div className={+data.months > 6 ? 'box' : 'empty'}>
         <Box
           className="rpv-core__viewer"
           sx={{
-            border: 3,
+            border: 2,
             borderTopLeftRadius: 10,
             borderTopRightRadius: 10,
             borderColor: '#eee',

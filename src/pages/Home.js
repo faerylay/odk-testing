@@ -6,7 +6,7 @@ import CoverImage from '../assets/images/CoverImage_1.png';
 
 import useWindowDimensions from '../hooks/useWindowDimensions';
 import { Footer, CoverSwiper } from '../components/MainComponent';
-// import Youtube from '../components/MainComponent/helpers/Youtube';
+import Youtube from '../components/MainComponent/helpers/Youtube';
 import MotificationImage from '../components/MainComponent/helpers/MotificationImage';
 
 const Home = () => {
@@ -23,7 +23,7 @@ const Home = () => {
           REQUEST FORM
         </Button>
       </Box>
-      {/* <Youtube /> */}
+      <Youtube />
       <MotificationImage />
       <Footer />
     </Box>

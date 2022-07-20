@@ -1,8 +1,8 @@
-import React from 'react';
-import { useTheme, useMediaQuery, Box, Paper } from '@mui/material'
+import React from 'react'
+import { Paper, Box, useTheme, useMediaQuery } from '@mui/material'
+import ReactPlayer from 'react-player'
 
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
-import YoutubeList from './YoutubeList';
 
 const Youtube = () => {
   const theme = useTheme()
@@ -11,12 +11,26 @@ const Youtube = () => {
 
 
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBlock: 1 }}>
-      <Paper elevation={3} sx={{ width: matchDownMd ? width / 1.1 : width / 1.5, height: matchDownMd ? height / 2 : height / 1.06 }}>
-        <YoutubeList />
+    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBlock: 3 }}>
+      <Paper elevation={5} sx={{ width: matchDownMd ? width / 1.1 : width / 1.5, height: matchDownMd ? height / 2 : height / 1.06 }}>
+        <ReactPlayer
+          controls={true}
+          url={"https://www.youtube.com/watch?v=HZoVj7xcWxo&t=891s"}
+          config={{
+            youtube: {
+              playerVars: {
+                origin: 'https://localhost:3000/home',
+                showinfo: 1
+              }
+            }
+          }}
+          playing={false}
+          volume={1}
+          width={'100%'}
+          height={'100%'}
+        />
       </Paper>
     </Box>
-
   )
 }
 
