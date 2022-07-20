@@ -1,3 +1,4 @@
+import jwt_decode from 'jwt-decode';
 
 const IS_LOGGED_IN = 'isLoggedIn'
 
@@ -11,4 +12,13 @@ export const isLoggedIn = () => {
   }
   localStorage.removeItem(IS_LOGGED_IN)
   return false
+}
+
+export const userId = () => {
+  const token = localStorage.getItem('profile')
+  let decoded;
+  if (token) {
+    decoded = jwt_decode(token);
+  }
+  return decoded
 }

@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player'
 
 import useWindowDimensions from '../../../hooks/useWindowDimensions';
 
-const Youtube = () => {
+const Youtube = ({ youtubeUrl }) => {
   const theme = useTheme()
   const { width, height } = useWindowDimensions()
   const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
@@ -15,7 +15,7 @@ const Youtube = () => {
       <Paper elevation={5} sx={{ width: matchDownMd ? width / 1.1 : width / 1.5, height: matchDownMd ? height / 2 : height / 1.06 }}>
         <ReactPlayer
           controls={true}
-          url={"https://www.youtube.com/watch?v=HZoVj7xcWxo&t=891s"}
+          url={youtubeUrl}
           config={{
             youtube: {
               playerVars: {

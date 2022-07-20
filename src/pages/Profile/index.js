@@ -43,7 +43,7 @@ const Profile = () => {
     <Container maxWidth="lg" >
       {user && (
         <Box>
-          <Anouncement />
+          <Anouncement anouncement={getUser?.user?.anouncement} />
           <Paper elevation={3} sx={{ border: 2, borderColor: "#FFD700" }}>
             <Box sx={{ width: '100%', alignSelf: 'center' }}>
               <Box sx={{ p: 2, overflow: 'auto' }}>

@@ -1,7 +1,11 @@
 import { gql } from '@apollo/client'
 
 
-
+export const ANOUNCEMENT = gql`
+mutation Anouncement($adminId: ID!, $anouncementNow: Boolean) {
+  anouncement(adminId: $adminId, anouncementNow: $anouncementNow) 
+}
+`
 export const LOG_IN = gql`
 mutation signIn($username: String!, $password: String!) {
   signIn(username: $username, password: $password) {
@@ -56,6 +60,7 @@ query GetUser($getUserId: ID!, $offset: Int, $limit: Int) {
       username
       fullName
       dateOfBirth
+      anouncement
       certificates {
         id
         fullname
