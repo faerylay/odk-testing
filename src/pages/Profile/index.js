@@ -6,6 +6,8 @@ import { useQuery } from '@apollo/client';
 import jwt_decode from 'jwt-decode'
 import Certificates from './Certificates';
 import Achievements from './Achievements';
+import Anouncement from './Anouncement';
+
 import { FETCH_USER } from '../../graphql'
 
 const Profile = () => {
@@ -42,23 +44,31 @@ const Profile = () => {
   }
   return (
     <Container maxWidth="lg" >
-      <Paper elevation={3} sx={{ border: 3, borderColor: "#FFD700", mt: 2 }}>
-        <Box sx={{ width: '100%', alignSelf: 'center' }}>
-          {user && (
-            <Box sx={{ p: 2, overflow: 'auto' }}>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', paddingInline: 3, paddingBlock: 1 }}>
-                <Typography variant="h3">Name - {getUser?.user?.fullName}</Typography>
-                <Button variant="outlined" sx={{ border: 2, borderColor: '#fff' }} onClick={logout} >
-                  <Typography variant='h3'>Logout</Typography>
-                </Button>
+      {user && (
+        <Box>
+          <Anouncement />
+          <Paper elevation={3} sx={{ border: 2, borderColor: "#FFD700" }}>
+            <Box sx={{ width: '100%', alignSelf: 'center' }}>
+              <Box sx={{ p: 2, overflow: 'auto' }}>
+
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', paddingInline: 3, paddingBlock: 1 }}>
+                  <Typography variant="h3">Name - {getUser?.user?.fullName}</Typography>
+                  <Button variant="outlined" sx={{ border: 2, borderColor: '#fff' }} onClick={logout} >
+                    <Typography variant='h3'>Logout</Typography>
+                  </Button>
+                </Box>
+                {!loading && <Achievements achievements={getUser?.user?.achievements} />}
+                {!loading && <Certificates getUser={getUser} fetchMore={fetchMore} setLimit={setLimit} />}
               </Box>
-              {!loading && <Achievements achievements={getUser?.user?.achievements} />}
-              {!loading && <Certificates getUser={getUser} fetchMore={fetchMore} setLimit={setLimit} />}
             </Box>
-          )}
-          {!user && (<h1>Login</h1>)}
+          </Paper>
         </Box>
-      </Paper>
+      )}
+      {!user && (
+        <Paper elevation={3} >
+          <h1>Login</h1>
+        </Paper>
+      )}
     </Container>
   )
 }
