@@ -57,7 +57,7 @@ const AchievementCreate = ({ data, handleClose }) => {
   return (
     <Box sx={{ paddingInline: { xs: 2, md: 3 } }}>
       <form noValidate onSubmit={handleSubmit} >
-        {errors || fileSize(
+        {(errors || fileSize) && (
           <FormHelperText error sx={{ mb: 2 }}>
             {errors || fileSize}
           </FormHelperText>
