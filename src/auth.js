@@ -20,5 +20,5 @@ export const userId = () => {
   if (token) {
     decoded = jwt_decode(token);
   }
-  return decoded
+  return decoded?._id
 }
