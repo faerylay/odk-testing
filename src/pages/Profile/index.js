@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
-import { Box, Button, Typography, Container, Paper } from '@mui/material';
+import { Box, Button, Typography, Container, Paper, Skeleton } from '@mui/material';
 import { useQuery } from '@apollo/client';
 
 import jwt_decode from 'jwt-decode'
 import Certificates from './Certificates';
 import Achievements from './Achievements';
-import Anouncement from './Anouncement';
-
 import { FETCH_USER } from '../../graphql'
+import Anouncement from './Anouncement';
 
 const Profile = () => {
   const [limit, setLimit] = useState(4);
@@ -53,6 +52,18 @@ const Profile = () => {
                     <Typography>Logout</Typography>
                   </Button>
                 </Box>
+                {user && loading && (
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <Skeleton
+                      animation="pulse"
+                      style={{ width: '48%', height: 500, mb: 3 }}
+                    />
+                    <Skeleton
+                      animation="pulse"
+                      style={{ width: '48%', height: 500, mb: 3 }}
+                    />
+                  </Box>
+                )}
                 {!loading && <Achievements achievements={getUser?.user?.achievements} />}
                 {!loading && <Certificates getUser={getUser} fetchMore={fetchMore} setLimit={setLimit} />}
               </Box>

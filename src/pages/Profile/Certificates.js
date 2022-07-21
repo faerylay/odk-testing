@@ -36,7 +36,7 @@ const Certificates = ({ getUser, fetchMore, setLimit }) => {
   return (
     <Box>
       <ImageList cols={matchDownMd ? 1 : 2} gap={8} sx={{ width: '100%' }}>
-        {getUser?.user?.certificates?.map((item) => (
+        {getUser?.user?.certificates && getUser?.user?.certificates?.map((item) => (
           <ImageListItem key={item.id} sx={{ border: 1, borderColor: '#ccc' }}>
             <img
               src={item.image}
@@ -59,6 +59,7 @@ const Certificates = ({ getUser, fetchMore, setLimit }) => {
             </Box>
           </ImageListItem>
         ))}
+        {!getUser?.user?.certificates && <Typography>loading...</Typography>}
       </ImageList>
       <Box sx={{ display: 'flex', justifyContent: 'center', py: 2 }}>
         {

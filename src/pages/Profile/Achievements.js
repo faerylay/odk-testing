@@ -8,7 +8,8 @@ const Achievements = ({ achievements }) => {
 
   return (
     <ImageList cols={matchDownMd ? 1 : 2} gap={8}>
-      {achievements?.map(item => <PdfViewer data={item} key={item.id} />)}
+      {achievements && achievements?.map(item => <PdfViewer data={item} key={item.id} />)}
+      {!achievements && <Typography>loading...</Typography>}
     </ImageList>
   )
 }

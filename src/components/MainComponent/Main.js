@@ -34,7 +34,7 @@ const MainComponent = () => {
         position="fixed"
         color="inherit"
         elevation={0}
-        sx={{ height: height / 15, bgcolor: '#333333' }}
+        sx={{ height: height / 15, bgcolor: '#213047' }}
       >
         <Toolbar variant='dense' sx={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'space-around' }}>
           <Header handleDrawerToggle={handleDrawerToggle} />
