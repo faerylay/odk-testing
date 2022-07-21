@@ -2,15 +2,24 @@ import React from 'react'
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material';
 import { ActionModal, UserEditModal, AchievementModal } from '../Modal';
 
-const UserSearchResult = ({ users, loading }) => {
-  if (loading) {
+const UserSearchResult = ({ users, loading, errors }) => {
+  if (loading && !errors) {
     return (
       <Paper elevation={1} sx={{ width: '100%', height: 300, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <Typography>Loading ....</Typography>
       </Paper>
     )
   }
-  if (!loading && !users.length) {
+
+  if (!loading && errors) {
+    return (
+      <Paper elevation={1} sx={{ width: '100%', height: 300, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Typography>{errors}</Typography>
+      </Paper>
+    )
+  }
+
+  if (!loading && !users.length && !errors) {
     return (
       <Paper elevation={1} sx={{ width: '100%', height: 300, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <Typography>Not User Found ....</Typography>
@@ -20,7 +29,7 @@ const UserSearchResult = ({ users, loading }) => {
   return (
     <Box>
       {
-        !loading && users.length > 0 && (
+        !loading && !errors && users.length > 0 && (
           <TableContainer component={Paper} elevation={3}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>

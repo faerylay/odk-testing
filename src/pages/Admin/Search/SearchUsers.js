@@ -9,7 +9,7 @@ import UserSearchResult from './UserSearchResult';
 
 const Searchs = () => {
   const client = useApolloClient();
-
+  const [errors, setErrors] = useState('')
   const [users, setUsers] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(false);
@@ -27,16 +27,19 @@ const Searchs = () => {
 
   useEffect(() => {
     const search = async () => {
-      const { data } = await client.query({
-        query: SEARCH_USERS,
-        variables: { searchQuery: debounceSearchQuery },
-      });
+      try {
+        const { data } = await client.query({
+          query: SEARCH_USERS,
+          variables: { searchQuery: debounceSearchQuery },
+        });
+        setUsers(data.searchUsers);
+        setLoading(false);
 
-      setUsers(data.searchUsers);
-      setLoading(false);
-
-      const openSearchResult = debounceSearchQuery !== '';
-      setIsOpenSearchResult(openSearchResult);
+        const openSearchResult = debounceSearchQuery !== '';
+        setIsOpenSearchResult(openSearchResult);
+      } catch (error) {
+        setErrors(error.graphQLErrors[0].message)
+      }
     };
 
     debounceSearchQuery ? search() : setIsOpenSearchResult(false);
@@ -61,10 +64,16 @@ const Searchs = () => {
       value={searchQuery}
       inputRef={inputRef}
     >
-      {isOpenSearchResult && <UserSearchResult users={users} loading={loading} />}
+      {isOpenSearchResult && <UserSearchResult users={users} loading={loading} errors={errors} />}
       {!isOpenSearchResult && (
         <Paper sx={{ width: '100%', height: 300, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <Typography>Search Users</Typography>
+          {
+            errors ? (
+              <Typography>{errors}</Typography>
+            ) : (
+              <Typography>Search Users</Typography>
+            )
+          }
         </Paper>
       )}
     </SearchInput>

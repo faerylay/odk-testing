@@ -1,9 +1,9 @@
 import { ApolloClient, InMemoryCache, from } from "@apollo/client";
-import { errorLink, uploadLink } from './apolloLink'
+import { errorLink, authLink, uploadLink } from './apolloLink'
 
 const createApolloClient = () => {
   return new ApolloClient({
-    link: from([errorLink, uploadLink]),
+    link: from([errorLink, authLink, uploadLink]),
     cache: new InMemoryCache({
       typePolicies: {
         Query: {

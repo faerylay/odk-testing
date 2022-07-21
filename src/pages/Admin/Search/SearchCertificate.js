@@ -10,7 +10,7 @@ import CertiSearchResult from './CertiSearchResult';
 const SearchCertificate = () => {
 
   const client = useApolloClient();
-
+  const [errors, setErrors] = useState('')
   const [certificates, setCertificates] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(false);
@@ -28,20 +28,23 @@ const SearchCertificate = () => {
 
   useEffect(() => {
     const search = async () => {
-      const { data } = await client.query({
-        query: SEARCH_CERTIFICATE,
-        variables: { searchQuery: debounceSearchQuery },
-      });
+      try {
+        const { data } = await client.query({
+          query: SEARCH_CERTIFICATE,
+          variables: { searchQuery: debounceSearchQuery },
+        });
 
-      setCertificates(data.searchCertificates);
-      setLoading(false);
+        setCertificates(data.searchCertificates);
+        setLoading(false);
 
-      const openSearchResult = debounceSearchQuery !== '';
-      setIsOpenSearchResult(openSearchResult);
+        const openSearchResult = debounceSearchQuery !== '';
+        setIsOpenSearchResult(openSearchResult);
+      } catch (error) {
+        setErrors(error.graphQLErrors[0].message)
+      }
     };
 
     debounceSearchQuery ? search() : setIsOpenSearchResult(false);
-
     return () => setLoading(false);
   }, [debounceSearchQuery, client]);
 
@@ -63,10 +66,16 @@ const SearchCertificate = () => {
       value={searchQuery}
       inputRef={inputRef}
     >
-      {isOpenSearchResult && <CertiSearchResult certificates={certificates} loading={loading} />}
+      {isOpenSearchResult && <CertiSearchResult certificates={certificates} loading={loading} errors={errors} />}
       {!isOpenSearchResult && (
         <Paper sx={{ width: '100%', height: 300, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <Typography>Search Certificates</Typography>
+          {
+            errors ? (
+              <Typography>{errors}</Typography>
+            ) : (
+              <Typography>Search Certificates</Typography>
+            )
+          }
         </Paper>
       )}
     </SearchInput>

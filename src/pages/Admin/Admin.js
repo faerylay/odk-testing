@@ -10,11 +10,14 @@ import { userId } from '../../auth'
 const Admin = () => {
   const navigate = useNavigate()
   const [now, setNow] = useState(false);
-
+  const [errors, setErrors] = useState('')
   const [anouncement] = useMutation(ANOUNCEMENT, {
     variables: {
       anouncementNow: !now,
       adminId: userId()
+    },
+    onError(error) {
+      setErrors(error.graphQLErrors[0].message);
     }
   })
   const anouncementNow = async () => {
@@ -31,9 +34,12 @@ const Admin = () => {
       <Box sx={{ display: 'flex', justifyContent: 'space-between', paddingInline: 3, paddingBlock: 1 }}>
         <Typography variant='h3'>Admin Dashboard</Typography>
         <Box>
-          <FormControlLabel label={now ? 'Anouncement open' : 'Anouncement closed'} control={
-            <Switch checked={now} onChange={anouncementNow} />
-          } />
+          {errors && <Typography variant='span' sx={{ mr: 1 }}>{errors}</Typography>}
+          {!errors && (
+            <FormControlLabel label={now ? 'Anouncement open' : 'Anouncement closed'} control={
+              <Switch checked={now} onChange={anouncementNow} />
+            } />
+          )}
           <Button variant="contained" onClick={logout} >
             <Typography >Logout</Typography>
           </Button>

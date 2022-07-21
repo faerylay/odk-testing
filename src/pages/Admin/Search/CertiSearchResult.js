@@ -4,24 +4,24 @@ import { IconPhoto } from '@tabler/icons'
 import ActionModal from '../Modal/ActionModal';
 import CertificateDelete from '../Certificate/CertificateDelete';
 
-const CertiSearchResult = ({ certificates, loading }) => {
+const CertiSearchResult = ({ certificates, loading, errors }) => {
   const [open, setOpen] = useState(false)
   return (
     <Box>
       {
-        loading && (
+        loading && !errors && (
           <Paper elevation={1} sx={{ width: '100%', height: 300, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Typography>Loading ....</Typography>
           </Paper>
         )
       }
-      {!loading && !certificates.length && (
+      {!loading && !certificates.length && !errors && (
         <Paper elevation={1} sx={{ width: '100%', height: 300, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <Typography>No Certificates Found ....</Typography>
         </Paper>
       )}
       {
-        !loading && certificates.length > 0 && (
+        !loading && !errors && certificates.length > 0 && (
           <TableContainer component={Paper} elevation={3}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
