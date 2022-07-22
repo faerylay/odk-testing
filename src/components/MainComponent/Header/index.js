@@ -2,18 +2,13 @@ import React from 'react';
 import { Box, IconButton, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom'
 import { IconMenu2, IconUser } from '@tabler/icons'
-import jwt_decode from 'jwt-decode'
-
+import { authAccess } from '../../../auth'
 import LogoSection from '../helpers/LogoSection';
 
 const Header = ({ handleDrawerToggle }) => {
   const navigate = useNavigate()
-  const token = localStorage.getItem('profile')
-  let decoded;
-  if (token) {
-    decoded = jwt_decode(token);
-  }
-  const goTo = decoded?.role === 'Admin' ? 'admin' : 'profile';
+
+  const goTo = authAccess()?.role === 'Admin' ? 'admin' : 'profile';
   const linkMenu = {
     color: '#bbb',
     "&:hover": {
@@ -55,8 +50,8 @@ const Header = ({ handleDrawerToggle }) => {
           NUG'S RECOMMENDATION
         </Typography>
         {
-          decoded ? (
-            <Typography sx={linkMenu} onClick={() => navigate(`/${goTo}/${decoded._id}`)}>
+          authAccess()._id ? (
+            <Typography sx={linkMenu} onClick={() => navigate(`/${goTo}/${authAccess()._id}`)}>
               <IconUser />
             </Typography>
           ) : (

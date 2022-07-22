@@ -2,15 +2,13 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom'
 import { Drawer, Box, Typography, IconButton, Divider, List, ListItem, ListItemText, ListItemButton } from '@mui/material';
 import { IconX } from '@tabler/icons'
-import jwt_decode from 'jwt-decode'
+import { authAccess } from '../../../auth'
+
+
 const DrawerMenu = ({ mobileOpen, handleDrawerToggle }) => {
   const navigate = useNavigate()
-  const token = localStorage.getItem('profile')
-  let decoded;
-  if (token) {
-    decoded = jwt_decode(token);
-  }
-  const goTo = decoded?.role === 'Admin' ? 'admin' : 'profile';
+
+  const goTo = authAccess()?.role === 'Admin' ? 'admin' : 'profile';
   const drawerWidth = 320;
 
   const container = window !== undefined ? () => window.document.body : undefined;
@@ -57,9 +55,9 @@ const DrawerMenu = ({ mobileOpen, handleDrawerToggle }) => {
           </ListItemButton>
         </ListItem>
         {
-          decoded ? (
+          authAccess()._id ? (
             <ListItem disablePadding >
-              <ListItemButton onClick={() => navigate(`/${goTo}/${decoded._id}`)}>
+              <ListItemButton onClick={() => navigate(`/${goTo}/${authAccess()._id}`)}>
                 <ListItemText primary="PROFILE" />
               </ListItemButton>
             </ListItem>
@@ -84,7 +82,7 @@ const DrawerMenu = ({ mobileOpen, handleDrawerToggle }) => {
       open={mobileOpen}
       onClose={handleDrawerToggle}
       ModalProps={{
-        keepMounted: true, // Better open performance on mobile.
+        keepMounted: true,
       }}
       sx={{
         display: { xs: 'block', md: 'none' },

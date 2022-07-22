@@ -7,11 +7,11 @@ export const isLoggedIn = () => {
   return false
 }
 
-export const userId = () => {
+export const authAccess = () => {
   const token = localStorage.getItem('profile')
   let decoded;
   if (token) {
     decoded = jwt_decode(token);
   }
-  return decoded?._id
+  return decoded
 }

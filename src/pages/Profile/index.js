@@ -3,15 +3,17 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Box, Button, Typography, Container, Paper, Skeleton } from '@mui/material';
 import { useQuery } from '@apollo/client';
 
-import jwt_decode from 'jwt-decode'
 import Certificates from './Certificates';
 import Achievements from './Achievements';
 import { FETCH_USER } from '../../graphql'
 import Anouncement from './Anouncement';
+import { authAccess } from '../../auth'
 
 const Profile = () => {
-  const [limit, setLimit] = useState(4);
+  const navigate = useNavigate()
   const { getUserId } = useParams()
+
+  const [limit, setLimit] = useState(4);
   const { data: { getUser } = {}, loading, fetchMore } = useQuery(FETCH_USER, {
     variables: {
       getUserId,
@@ -20,24 +22,17 @@ const Profile = () => {
     }
   })
 
-  const token = localStorage.getItem('profile')
-  const navigate = useNavigate()
-  const [user, setUser] = useState(false);
-
   useEffect(() => {
-    if (token) {
-      const decoded = jwt_decode(token);
-      if (decoded.role !== 'User') {
-        navigate('/home')
-      }
-      setUser(decoded.role === 'User');
+    if (authAccess().role !== 'User') {
+      navigate('/home')
     }
-  }, [token, navigate]);
+  }, [navigate]);
 
   const logout = () => {
     localStorage.removeItem('profile')
     navigate('/login')
   }
+  const user = authAccess()?.role === 'User';
   return (
     <Container maxWidth="lg" >
       {user && (

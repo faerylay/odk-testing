@@ -14,7 +14,7 @@ const Admin = () => {
   const [anouncement] = useMutation(ANOUNCEMENT, {
     variables: {
       anouncementNow: !now,
-      adminId: userId()
+      adminId: userId()?._id
     },
     onError(error) {
       setErrors(error.graphQLErrors[0].message);
