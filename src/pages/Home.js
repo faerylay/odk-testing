@@ -14,7 +14,7 @@ const Home = () => {
   const { width, height } = useWindowDimensions()
   const youtube = [
     { name: 'https://www.youtube.com/watch?v=HZoVj7xcWxo&t=891s' },
-    { name: '"https://www.youtube.com/watch?v=gXxiRwWmpWI"' }
+    // { name: '"https://www.youtube.com/watch?v=gXxiRwWmpWI"' }
   ]
   return (
     <Box>
