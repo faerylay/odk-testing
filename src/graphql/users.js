@@ -6,6 +6,7 @@ mutation Anouncement($adminId: ID!, $anouncementNow: Boolean) {
   anouncement(adminId: $adminId, anouncementNow: $anouncementNow) 
 }
 `
+
 export const LOG_IN = gql`
 mutation signIn($username: String!, $password: String!) {
   signIn(username: $username, password: $password) {

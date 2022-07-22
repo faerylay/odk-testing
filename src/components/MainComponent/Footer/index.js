@@ -6,7 +6,7 @@ const Footer = () => {
   const { height } = useWindowDimensions()
   return (
     <Box sx={{
-      color: '#fff',
+      color: '#ffb400',
       width: '100%',
       height: height / 5,
       background: '#213047',

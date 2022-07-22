@@ -106,7 +106,22 @@ const AuthLogin = ({ ...others }) => {
           />
 
         </FormControl>
-
+        {/* <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={false}
+                onChange={(event) => console.log(event.target.checked)}
+                name="checked"
+                color="primary"
+              />
+            }
+            label="Remember me"
+          />
+          <Typography variant="subtitle1" color="secondary" sx={{ textDecoration: 'none', cursor: 'pointer' }}>
+            Forgot Password?
+          </Typography>
+        </Stack> */}
 
         <Box sx={{ mt: 2 }}>
           <Button

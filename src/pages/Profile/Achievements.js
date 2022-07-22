@@ -1,5 +1,5 @@
 import React from 'react'
-import { ImageList, useTheme, useMediaQuery } from '@mui/material'
+import { ImageList, useTheme, useMediaQuery, Typography } from '@mui/material'
 import PdfViewer from './PdfViewer';
 
 const Achievements = ({ achievements }) => {

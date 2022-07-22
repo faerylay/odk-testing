@@ -50,7 +50,7 @@ const Header = ({ handleDrawerToggle }) => {
           NUG'S RECOMMENDATION
         </Typography>
         {
-          authAccess()._id ? (
+          authAccess()?._id ? (
             <Typography sx={linkMenu} onClick={() => navigate(`/${goTo}/${authAccess()._id}`)}>
               <IconUser />
             </Typography>

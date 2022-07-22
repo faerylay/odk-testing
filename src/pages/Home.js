@@ -12,10 +12,10 @@ import MotificationImage from '../components/MainComponent/helpers/MotificationI
 const Home = () => {
   const navigate = useNavigate()
   const { width, height } = useWindowDimensions()
-  // const youtube = [
-  //   { name: 'https://www.youtube.com/watch?v=HZoVj7xcWxo&t=891s' },
-  //   { name: 'https://www.youtube.com/watch?v=gXxiRwWmpWI' }
-  // ]
+  const youtube = [
+    { name: 'https://www.youtube.com/watch?v=HZoVj7xcWxo&t=891s' },
+    { name: '"https://www.youtube.com/watch?v=gXxiRwWmpWI"' }
+  ]
   return (
     <Box>
       <Box sx={{ width, height: { md: height / 1.4, xs: height / 3 } }}>
@@ -27,9 +27,9 @@ const Home = () => {
           REQUEST FORM
         </Button>
       </Box>
-      {/* {
+      {
         youtube.map(data => <Youtube key={data.name} youtubeUrl={data.name} />)
-      } */}
+      }
       <MotificationImage />
       <Footer />
     </Box>

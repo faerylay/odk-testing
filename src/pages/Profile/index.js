@@ -23,7 +23,7 @@ const Profile = () => {
   })
 
   useEffect(() => {
-    if (authAccess().role !== 'User') {
+    if (authAccess()?.role !== 'User') {
       navigate('/home')
     }
   }, [navigate]);

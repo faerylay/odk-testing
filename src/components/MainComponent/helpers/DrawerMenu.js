@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { Drawer, Box, Typography, IconButton, Divider, List, ListItem, ListItemText, ListItemButton } from '@mui/material';
 import { IconX } from '@tabler/icons'
 import { authAccess } from '../../../auth'
-
-
 const DrawerMenu = ({ mobileOpen, handleDrawerToggle }) => {
   const navigate = useNavigate()
 
@@ -82,7 +80,7 @@ const DrawerMenu = ({ mobileOpen, handleDrawerToggle }) => {
       open={mobileOpen}
       onClose={handleDrawerToggle}
       ModalProps={{
-        keepMounted: true,
+        keepMounted: true, // Better open performance on mobile.
       }}
       sx={{
         display: { xs: 'block', md: 'none' },

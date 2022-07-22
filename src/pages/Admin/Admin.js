@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { ANOUNCEMENT } from '../../graphql'
 import AdminTabs from './AdminTabs'
 import { useMutation } from '@apollo/client'
-import { userId } from '../../auth'
+import { authAccess } from '../../auth'
 
 const Admin = () => {
   const navigate = useNavigate()
@@ -14,7 +14,7 @@ const Admin = () => {
   const [anouncement] = useMutation(ANOUNCEMENT, {
     variables: {
       anouncementNow: !now,
-      adminId: userId()?._id
+      adminId: authAccess()?._id
     },
     onError(error) {
       setErrors(error.graphQLErrors[0].message);
