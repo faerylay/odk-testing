@@ -42,7 +42,7 @@ const PdfViewer = ({ data }) => {
               justifyContent: 'space-between',
               py: 2,
               px: 3,
-              zIndex: 1
+              zIndex: 999
             }}
           >
             <DownloadButton />

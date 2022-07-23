@@ -53,7 +53,7 @@ const DrawerMenu = ({ mobileOpen, handleDrawerToggle }) => {
           </ListItemButton>
         </ListItem>
         {
-          authAccess()._id ? (
+          authAccess()?._id ? (
             <ListItem disablePadding >
               <ListItemButton onClick={() => navigate(`/${goTo}/${authAccess()._id}`)}>
                 <ListItemText primary="PROFILE" />

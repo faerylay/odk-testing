@@ -2,11 +2,10 @@ import { onError } from "@apollo/client/link/error";
 import { setContext } from '@apollo/client/link/context';
 import { createUploadLink } from 'apollo-upload-client';
 
-// const REACT_APP_API_URL = 'https://odk-testing.herokuapp.com/graphql'
-const REACT_CLONE_URL = 'http://localhost:4000/graphql'
+const REACT_APP_API_URL = 'https://odk-testing.herokuapp.com/graphql'
 
 export const uploadLink = createUploadLink({
-  uri: REACT_CLONE_URL,
+  uri: REACT_APP_API_URL,
   credentials: 'include',
   headers: { 'Apollo-Require-Preflight': 'true' }
 });

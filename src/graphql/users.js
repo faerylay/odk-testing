@@ -1,8 +1,19 @@
 import { gql } from '@apollo/client'
 
+export const ADMIN_CONFIRM_CODE = gql`
+mutation ConfirmCode($adminId: ID!, $confirmCode: Int) {
+  confirmCode(adminId: $adminId, confirmCode: $confirmCode) {
+    token
+    user {
+      id
+      role
+    }
+  }
+}
+`
 
 export const ANOUNCEMENT = gql`
-mutation Anouncement($adminId: ID!, $anouncementNow: Boolean) {
+ mutation Anouncement($adminId: ID!, $anouncementNow: Boolean) {
   anouncement(adminId: $adminId, anouncementNow: $anouncementNow) 
 }
 `
